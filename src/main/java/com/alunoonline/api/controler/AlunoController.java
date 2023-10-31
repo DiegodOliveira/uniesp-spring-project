@@ -1,5 +1,6 @@
 package com.alunoonline.api.controler;
 
+import com.alunoonline.api.Dto.AlunoDTO;
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
