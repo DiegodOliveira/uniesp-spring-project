@@ -1,6 +1,8 @@
 package com.alunoonline.api.controler;
 
 import com.alunoonline.api.Dto.AlunoDTO;
+import com.alunoonline.api.Dto.AlunoUpdateDTO;
+import com.alunoonline.api.Dto.AlunoView;
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,18 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
         service.delete(id);
+    }
+
+    public ResponseEntity<AlunoView> updateAluno(
+            @RequestParam(value = "id") Long id,
+            @RequestBody AlunoUpdateDTO alunoUpdateDTO
+            ){
+        Aluno aluno = new Aluno();
+        aluno.setId(alunoUpdateDTO.setId(id));
+        // aluno.setNome(alunoUpdateDTO.setNome(nome)); //Dando errado
+        // aluno.setEmail(alunoUpdateDTO.setEmail(email)); //Dando errado
+
+        return ResponseEntity.status(HttpStatus.OK).body(new AlunoView(aluno));
     }
 
 }
