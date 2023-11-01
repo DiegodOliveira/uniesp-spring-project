@@ -1,5 +1,6 @@
 package com.alunoonline.api.service;
 
+import com.alunoonline.api.Dto.AlunoPatchRequestDto;
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class AlunoService {
         return repository.findById(id);
     }
 
+    public void patch(Long alunoId, String novoEmail){
+        Optional<Aluno> alunoAserEditado = repository.findById(alunoId);
+        alunoAserEditado.get().setEmail(novoEmail);
+        repository.save(alunoAserEditado.get());
+    }
 
     public void delete(Long id){
         repository.deleteById(id);
