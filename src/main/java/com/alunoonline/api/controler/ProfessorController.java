@@ -1,6 +1,8 @@
 package com.alunoonline.api.controler;
 
 
+import com.alunoonline.api.Dto.AlunoPatchRequestDto;
+import com.alunoonline.api.Dto.ProfessorPatchRequestDto;
 import com.alunoonline.api.model.Professor;
 import com.alunoonline.api.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,12 @@ public class ProfessorController {
     @ResponseStatus(HttpStatus.OK)
     public Optional<Professor> findById(@PathVariable Long id){
         return service.findById(id);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void patch(@RequestBody ProfessorPatchRequestDto professorPatchRequestDto, @PathVariable Long id){
+        service.patch(id, professorPatchRequestDto.getEmail());
     }
 
     @DeleteMapping("/{id}")
