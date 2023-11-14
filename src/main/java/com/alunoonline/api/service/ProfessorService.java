@@ -33,6 +33,12 @@ public class ProfessorService {
        repository.save(professorAserEditado.get());
    }
 
+   public void patchNome(Long professorId, String novoNome){
+       Optional<Professor> NomeAserEditado = repository.findById(professorId);
+       NomeAserEditado.get().setNome(novoNome);
+       repository.save(NomeAserEditado.get());
+   }
+
    public void delete(Long id){
        repository.deleteById(id);
    }
