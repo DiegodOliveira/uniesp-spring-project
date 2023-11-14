@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlunoPatchRequestDto {
-    private String email;
-
+public class AlunoNomePatchDto {
+    private String nome;
 }

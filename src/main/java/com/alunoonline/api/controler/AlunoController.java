@@ -1,5 +1,6 @@
 package com.alunoonline.api.controler;
 
+import com.alunoonline.api.Dto.AlunoNomePatchDto;
 import com.alunoonline.api.Dto.AlunoPatchRequestDto;
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.service.AlunoService;
@@ -48,6 +49,12 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void patch(@RequestBody AlunoPatchRequestDto alunoPatchRequestDto, @PathVariable Long id){
         service.patch(id, alunoPatchRequestDto.getEmail());
+    }
+
+    @PatchMapping("/nome/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void nameUpdate(@RequestBody AlunoNomePatchDto alunoNomePatchDto,@PathVariable Long id){
+        service.patchNome(id, alunoNomePatchDto.getNome());
     }
 
 }
