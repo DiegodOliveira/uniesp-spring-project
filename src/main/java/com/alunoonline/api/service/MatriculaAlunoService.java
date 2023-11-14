@@ -39,4 +39,14 @@ public class MatriculaAlunoService {
 
         repository.save(matriculaUpadated);
     }
+
+    public void patchStatusParaTrancado(Long matriculaAlunoId){
+        Optional<MatriculaAluno> matriculaAluno = repository.findById(matriculaAlunoId);
+
+        MatriculaAluno matriculaAlunoUpdated = matriculaAluno.get();
+
+        matriculaAlunoUpdated.setStatus("TRANCADO");
+
+        repository.save(matriculaAlunoUpdated);
+    }
 }
