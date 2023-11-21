@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DisciplinaService {
@@ -19,5 +20,11 @@ public class DisciplinaService {
 
     public List<Disciplina> findByProfessorId(Long professorId){
         return repository.findByProfessorId(professorId);
+    }
+
+    public void patchNome(Long disciplinaId, String novoNome){
+        Optional<Disciplina> NomeASerEditado = repository.findById(disciplinaId);
+        NomeASerEditado.get().setNome(novoNome);
+        repository.save(NomeASerEditado.get());
     }
 }
