@@ -27,7 +27,7 @@ public class DisciplinaController {
 
     @GetMapping("/professor/{professorId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Disciplina> findByProfessorIf(@PathVariable Long professorId){
+    public List<Disciplina> findByProfessorId(@PathVariable Long professorId){
         return service.findByProfessorId(professorId);
     }
 

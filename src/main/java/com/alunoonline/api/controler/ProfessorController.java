@@ -41,7 +41,7 @@ public class ProfessorController {
         return service.findById(id);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("email/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void patch(@RequestBody ProfessorPatchRequestDto professorPatchRequestDto, @PathVariable Long id){
         service.patch(id, professorPatchRequestDto.getEmail());

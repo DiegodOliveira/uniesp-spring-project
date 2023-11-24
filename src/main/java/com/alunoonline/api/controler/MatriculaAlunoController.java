@@ -29,7 +29,7 @@ public class MatriculaAlunoController {
         service.MarkPatchMaker(id, patchNotasRequest);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("matricula/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStatusParaTrancado(Long id){
         service.patchStatusParaTrancado(id);
