@@ -1,0 +1,725 @@
+openapi: 3.0.3
+info:
+  title: Aluno Online - API
+  description: |-
+   Esta é a documentação das APIs do sistema Aluno Online
+  
+  version: 1.0.11
+
+servers:
+  - url: https://localhost:8080
+tags:
+  - name: Aluno
+    description: Endpoints da entidade aluno
+  - name: Professor
+    description: Endpoints da entidade professor
+  - name: Disciplina
+    description: Endpoints da entidade disciplina
+  - name: Matricula
+    description: Endpoints da entidade matrícula
+paths:
+  /aluno:
+    post:
+      tags:
+        - Aluno
+      summary: Envia um novo aluno
+      description: Envia um novo Aluno
+      operationId: updateAluno
+      requestBody:
+        description: Envia um novo Aluno
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Estudante'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Estudante'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Estudante'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estudante'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Estudante'
+        '400':
+          description: Id inválido enviado 
+        '404':
+          description: Aluno não encontrado
+        '405':
+          description: Exceção de validação
+  /aluno/findAll:
+      get:
+        tags:
+          - Aluno
+        summary: Encontra os alunos no sistema
+        description: Encontra todos os alunos no sistema
+        operationId: updateAluno
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Estudante'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Estudante'
+          '400':
+            description: Id inválido enviado 
+          '404':
+            description: Aluno não encontrado
+          '405':
+            description: Exceção de validação
+  /aluno/findById/{id}:
+    get:
+        tags:
+          - Aluno
+        summary: Encontra um aluno pelo id
+        description: Encontrar um aluno pelo id
+        operationId: updateAluno
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Estudante'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Estudante'
+          '400':
+            description: Id inválido enviado 
+          '404':
+            description: Aluno não encontrado
+          '405':
+            description: Exceção de validação
+  /aluno/{id}:
+      patch:
+         tags:
+          - Aluno
+         summary: Atualiza o email de um aluno pelo id
+         description: Atualiza o email de um aluno pelo id
+         operationId: updateAlunoEmail
+         parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID do aluno a ser atualizado
+            schema:
+              type: string
+         requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: coringaotimao@curintia.com
+         responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Estudante'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Estudante'
+          '400':
+            description: Id inválido enviado
+          '404':
+            description: Aluno não encontrado
+          '405':
+            description: Exceção de validação
+      delete:
+            tags:
+                - Aluno
+            summary: Deleta um aluno pelo id
+            description: Deleta um aluno pelo id
+            operationId: Delete Aluno
+            parameters:
+              - name: id
+                in: path
+                required: true
+                description: ID do aluno a ser deletado
+                schema:
+                  type: string        
+            responses:
+              '200':
+                description: Successful operation
+              '400':
+                description: Id inválido enviado
+              '404':
+                description: Aluno não encontrado
+  /aluno/nome/{id}:
+      patch:
+         tags:
+          - Aluno
+         summary: Atualiza o nome de um aluno pelo id
+         description:  Atualiza o nome de um aluno pelo id
+         operationId: updateNomeAluno
+         parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID do aluno a ser atualizado
+            schema:
+             type: string
+         requestBody:
+           required: true
+           content:
+             application/json:
+              schema:
+               type: object
+               properties:
+                nome:
+                  type: string
+                  example: Alisson Becker
+         responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Estudante'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Estudante'
+          '400':
+            description: Id inválido enviado
+          '404':
+            description: Aluno não encontrado
+          '405':
+            description: Exceção de validação
+  /professor:
+   post:
+      tags:
+        - Professor
+      summary: Envia um novo Professor
+      description: Envia um novo Professor
+      operationId: updateProfessor
+      requestBody:
+        description: Envia um novo Professor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Professor'
+        '400':
+          description: Id inválido enviado 
+        '404':
+          description: Professor não encontrado
+        '405':
+          description: Exceção de validação
+   
+  /professor/all:
+   get:
+        tags:
+          - Professor
+        summary: Encontra todos os professores
+        description: Encontra todos os professores
+        operationId: updateProfessor
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Lista'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Lista'
+          '400':
+            description: Id inválido enviado 
+          '404':
+            description: Nenhum professor encontrado
+          '405':
+            description: Exceção de validação
+  /professor/{id}:
+    get:
+        tags:
+          - Professor
+        summary: Encontra um professor por id
+        description: Encontra um professor por id
+        operationId: updateProfessor
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Lista'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Lista'
+          '400':
+            description: Id inválido enviado 
+          '404':
+            description: Nenhum professor encontrado
+          '405':
+            description: Exceção de validação
+    delete:
+            tags:
+                - Professor
+            summary: Deleta um professor pelo id
+            description: Deleta um professor pelo id
+            operationId: Delete Professsor
+            parameters:
+              - name: id
+                in: path
+                required: true
+                description: ID do professor a ser deletado
+                schema:
+                  type: string        
+            responses:
+              '200':
+                description: Successful operation
+              '400':
+                description: Id inválido enviado
+              '404':
+                description: Professor não encontrado
+  /professor/email/{id}:
+    patch:
+         tags:
+          - Professor
+         summary: Atualiza o email de um professor pelo id
+         description: Atualiza o email de um professor pelo id
+         operationId: updateProfessorEmail
+         parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID do aluno a ser atualizado
+            schema:
+              type: string
+         requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: keslonprof@email.com
+         responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Professor'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Professor'
+          '400':
+            description: Id inválido enviado
+          '404':
+            description: Professor não encontrado
+          '405':
+            description: Exceção de validação
+  /professor/nome/{id}:
+    patch:
+         tags:
+          - Professor
+         summary: Atualiza o nome de um professor pelo id
+         description:  Atualiza o nome de um professor pelo id
+         operationId: updateNomeProfessor
+         parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID do professor a ser atualizado
+            schema:
+             type: string
+         requestBody:
+           required: true
+           content:
+             application/json:
+              schema:
+               type: object
+               properties:
+                nome:
+                  type: string
+                  example: Kelson
+         responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Professor'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Professor'
+          '400':
+            description: Id inválido enviado
+          '404':
+            description: Professor não encontrado
+          '405':
+            description: Exceção de validação
+  /disciplina:
+    post:
+      tags:
+        - Disciplina
+      summary: Envia uma nova disciplina
+      description: Envia uma nova disciplina
+      operationId: updateDisciplina
+      requestBody:
+        description: Envia uma nova disciplina
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Curso'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Curso'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Curso'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Curso'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Curso'
+        '400':
+          description: Id inválido enviado 
+        '404':
+          description: Disciplina não encontrada
+        '405':
+          description: Exceção de validação
+  /professor/{professorId}:
+    get:
+        tags:
+          - Disciplina
+        summary: Encontra um professor por id do professor
+        description: Encontra um professor por id do professor
+        operationId: findProfessor
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Professor'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Professor'
+          '400':
+            description: Id inválido enviado 
+          '404':
+            description: Nenhuma professor encontrado
+          '405':
+            description: Exceção de validação
+  /disciplina-nome/{id}:
+    patch:
+         tags:
+          - Disciplina
+         summary: Atualiza o nome de uma disciplina pelo id
+         description:  Atualiza o nome de uma disciplina pelo id
+         operationId: updateNomeDisciplina
+         parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID da disciplina a ser atualizada
+            schema:
+             type: string
+         requestBody:
+           required: true
+           content:
+             application/json:
+              schema:
+               type: object
+               properties:
+                nome:
+                  type: string
+                  example: Kelson
+         responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Curso'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Curso'
+          '400':
+            description: Id inválido enviado
+          '404':
+            description: Disciplina não encontrada
+          '405':
+            description: Exceção de validação
+  /matricula:
+   post:
+      tags:
+        - Matricula
+      summary: Envia uma nova matricula
+      description: Envia uma nova matricula
+      operationId: updateMatricula
+      requestBody:
+        description: Envia uma nova matricula
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Matricula'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Matricula'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Matricula'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Matricula'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Matricula'
+        '400':
+          description: Id inválido enviado 
+        '404':
+          description: Disciplina não encontrada
+        '405':
+          description: Exceção de validação
+  /matricula/{id}:
+   patch:
+      tags:
+          - Matricula
+      summary: Atualiza as notas de um aluno pelo id
+      description:  Atualiza as notas de um aluno pelo id
+      operationId: updateNotasAluno
+      parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID do aluno a ser atualizado
+            schema:
+             type: integer
+             format: int64
+      requestBody:
+          required: true
+          content:
+           application/json:
+            schema:
+             $ref: '#/components/schemas/Nota'
+      responses:
+              '200':
+                description: Successful operation
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Nota'          
+                  application/xml:
+                    schema:
+                      $ref: '#/components/schemas/Nota'
+              '400':
+                description: Id inválido enviado
+              '404':
+                description: Aluno não encontrado
+              '405':
+                description: Exceção de validação
+
+components:
+  schemas:
+    Estudante:
+      required:
+        - nome
+        - email
+        - curso
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Dieguito
+        email:
+          type: string
+          example: diegogames@gmail.com
+        curso:
+          type: string
+          example: Sistemas para Internet
+      xml:
+        name: estudante
+    Professor:
+      required:
+        - nome
+        - email
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Kelson
+        email:
+          type: string
+          example: keslonprof@email.com
+      xml:
+        name: professor
+    Lista:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nome:
+          type: string
+        email:
+          type: string
+      required:
+        - id
+        - nome
+        - email
+    Curso:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Back-End I
+        professor:
+          $ref: '#/components/schemas/Professor'
+      required:
+        - nome
+        - professor
+    AlunoRef:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+      required:
+        - id
+    DisciplinaRef:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+      required:
+        - id
+    Matricula:
+      type: object
+      properties:
+        aluno:
+          $ref: '#/components/schemas/AlunoRef'
+        disciplina:
+          $ref: '#/components/schemas/DisciplinaRef'
+      required:
+        - aluno
+        - disciplina
+    Nota:
+      type: object
+      properties:
+        nota1:
+          type: number
+          format: float
+          example: 7.0
+        nota2:
+          type: number
+          format: float
+          example: 10.0
+      required:
+        - nota1
+        - nota2
+
+  requestBodies:
+    Estudante:
+      description: Estudante object that needs to be added to the university
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Estudante'
+    Professor:
+      description: Professor object that needs to be added to the university
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Professor'
+    Lista:
+      description: Lista de pessoas
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Lista'
+            example:
+              - id: 2
+                nome: Rodrigo
+                email: rodrigoemail@email.com
+              - id: 3
+                nome: Angelo Dias
+                email: angeloemail@email.com
+              - id: 1
+                nome: Kelson
+                email: backend1@email.com
+    Curso:
+      description: Curso object that needs to be added to the university
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Curso'
+    Matricula:
+      description: Matricula object that needs to be added to the university
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Matricula'
+    Nota:
+      description: Nota object with student's grades
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Nota'
+    
+
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  
